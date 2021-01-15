@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Run App
 
-### `https://quiz-2284c.web.app/`
+### [https://quiz-2284c.web.app/]
 
 ## Available Scripts
 
