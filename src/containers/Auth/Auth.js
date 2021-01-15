@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import Button from '../../components/UI/Button/Button'
 import Input from '../../components/UI/Input/Input'
+import { auth } from '../../store/actions/auth';
 import './Auth.css'
 
 function validateEmail(email) {
@@ -9,7 +11,7 @@ function validateEmail(email) {
 }
 
 
-export default class Auth extends Component {
+class Auth extends Component {
 
     state = {
         isFormValid: false,
@@ -42,11 +44,19 @@ export default class Auth extends Component {
     }
 
     loginHandler = () => {
-
+        this.props.auth(
+            this.state.formControls.email.value,
+            this.state.formControls.password.value,
+            true
+        )
     }
 
     registerHandler = () => {
-
+        this.props.auth(
+            this.state.formControls.email.value,
+            this.state.formControls.password.value,
+            false
+        )
     }
 
     submitHandler = (event) => {
@@ -136,3 +146,11 @@ export default class Auth extends Component {
         )
     }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        auth: (email, password, isLogin) => dispatch(auth (email, password, isLogin))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Auth)
